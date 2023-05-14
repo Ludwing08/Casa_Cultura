@@ -59,10 +59,6 @@
                           <div class="d-flex align-items-center justify-content-center pb-4">
                             <button type="submit" class="btn btn-outline-danger">Crear cuenta</button>
                           </div>
-
-                          <div class="text-center pt-1 mb-5 pb-1">
-                              <a href=" {{ route('login') }}" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" >Ir a login</a>
-                          </div>
         
                         </form>
         
