@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @property integer $id
@@ -16,17 +17,11 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Autor extends Model
 {
-    /**
-     * The table associated with the model.
-     * 
-     * @var string
-     */
+    use HasFactory;
     protected $table = 'autores';
-
-    /**
-     * @var array
-     */
-    protected $fillable = ['nombres', 'apellidos', 'pais', 'provincia', 'ciudad', 'biografia'];
+    protected $primaryKey = 'id';
+    protected $fillable = ['nombres', 'apellidos', 'pais', 'provincia', 'ciudad'];
+    public $timestamps = false;
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

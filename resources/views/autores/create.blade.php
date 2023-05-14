@@ -17,31 +17,31 @@
                     <!--Nombres-->
                     <label class="form-label">Nombres</label>
                     <input type="text"
-                    class="form-control" name="nombres" id="" aria-describedby="helpId" placeholder="">
+                    class="form-control" name="nombres" id="" aria-describedby="helpId" placeholder="" required>
 
                     <!--Apellidos-->
                     <label class="form-label">Apellidos</label>
                     <input type="text"
-                    class="form-control" name="apellidos" id="" aria-describedby="helpId" placeholder="">
+                    class="form-control" name="apellidos" id="" aria-describedby="helpId" placeholder="" required>
 
                     <!--Pais-->
                     <label class="form-label">Pais</label>
                     <input type="text"
-                    class="form-control" name="pais" id="" aria-describedby="helpId" placeholder="">
+                    class="form-control" name="pais" id="" aria-describedby="helpId" placeholder="" required>
                     
-                    <!--Ciudad-->
+                    <!--Provincia-->
                     <label class="form-label">Provincia</label>
                     <input type="text"
-                    class="form-control" name="provincia" id="" aria-describedby="helpId" placeholder="">
+                    class="form-control" name="provincia" id="" aria-describedby="helpId" placeholder="" required>
 
-                    <!--Provincia-->
+                    <!--Ciudad-->
                     <label class="form-label">Ciudad</label>
                     <input type="text"
-                    class="form-control" name="ciudad" id="" aria-describedby="helpId" placeholder="">
+                    class="form-control" name="ciudad" id="" aria-describedby="helpId" placeholder="" required>
 
                     <!--Biografia-->
                     <label class="form-label">Biografía</label>
-                    <textarea class="form-control" name="biografia" id="" aria-describedby="helpId" placeholder="" ></textarea>
+                    <textarea class="form-control" name="biografia" id="" aria-describedby="helpId" placeholder="" required></textarea>
                     
                 </div>
             </div>

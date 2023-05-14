@@ -16,34 +16,34 @@
               <div class="mb-3">
                   <!--Nombres-->
                   <label class="form-label">Nombres</label>
-                  <input type="text"
-                  class="form-control" name="nombres" id="" aria-describedby="helpId" placeholder="" value="{{$autor->nombres}}">
+                  <input type="text" required
+                  class="form-control" name="nombres" id="" aria-describedby="helpId" placeholder="" value="{{$autor->nombres}}" >
 
                   <!--Apellidos-->
                   <label class="form-label">Apellidos</label>
-                  <input type="text"
-                  class="form-control" name="apellidos" id="" aria-describedby="helpId" placeholder="" value="{{$autor->apellidos}}">
+                  <input type="text" required
+                  class="form-control" name="apellidos" id="" aria-describedby="helpId" placeholder="" value="{{$autor->apellidos}}" >
 
                   <!--Pais-->
                   <label class="form-label">Pais</label>
-                  <input type="text"
+                  <input type="text" required
                   class="form-control" name="pais" id="" aria-describedby="helpId" placeholder="" value="{{$autor->pais}}">
                   
                   <!--Provincia-->
                   <label class="form-label">Provincia</label>
-                  <input type="text"
-                  class="form-control" name="provincia" id="" aria-describedby="helpId" placeholder="" value="{{$autor->provincia}}">
+                  <input type="text" required
+                  class="form-control" name="provincia" id="" aria-describedby="helpId" placeholder="" value="{{$autor->provincia}}" >
 
                   <!--Ciudad-->
                   <label class="form-label">Ciudad</label>
-                  <input type="text"
-                  class="form-control" name="ciudad" id="" aria-describedby="helpId" placeholder="" value="{{$autor->ciudad}}">
+                  <input type="text" required
+                  class="form-control" name="ciudad" id="" aria-describedby="helpId" placeholder="" value="{{$autor->ciudad}}" >
 
                   <!--Biografia-->
                   <label class="form-label">Biografía</label>
                   
-                <textarea class="form-control" name="biografia" id="" aria-describedby="helpId" placeholder="" 
-                value="{{$autor->biografia}}"></textarea>
+                <textarea required class="form-control" name="biografia" id="" aria-describedby="helpId" placeholder="" 
+                >{{$autor->biografia}}</textarea>
                   
               </div>
           </div>
@@ -57,10 +57,6 @@
     </div>
   </div>
 
-
-
-
-  
   <!-- Modal Eliminar-->
   <div class="modal fade" id="delete{{$autor->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -75,7 +71,7 @@
             @csrf  
             @method('DELETE')
             <div class="modal-body">
-                Estas seguro de eliminar el autor <strong>{{$autor->nombres}}?</strong>
+                Estas seguro de eliminar al autor <strong>{{$autor->nombres.' '.$autor->apellidos}}?</strong>
             </div>
         
             <div class="modal-footer">

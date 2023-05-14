@@ -45,6 +45,7 @@ class AutorController extends Controller
         $autor->pais = $request->input('pais');
         $autor->provincia = $request->input('provincia');
         $autor->ciudad = $request->input('ciudad');
+        $autor->biografia = $request->input('biografia');
         $autor->save();
         return redirect()->route('autores.index')->with('status', 'Autor creado exitosamente');
     }
@@ -87,6 +88,7 @@ class AutorController extends Controller
         $autor->pais = $request->input('pais');
         $autor->provincia = $request->input('provincia');
         $autor->ciudad = $request->input('ciudad');
+        $autor->biografia = $request->input('biografia');
         $autor->update();
         return redirect()->route('autores.index')->with('status', 'Autor actualizado exitosamente');
     }
