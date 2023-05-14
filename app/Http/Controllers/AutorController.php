@@ -16,6 +16,8 @@ class AutorController extends Controller
     public function index()
     {
         //
+        $autores = Autor::all();
+        return view('autores.index', compact('autores'));
     }
 
     /**
@@ -37,6 +39,14 @@ class AutorController extends Controller
     public function store(Request $request)
     {
         //
+        $autor = new Autor();
+        $autor->nombres = $request->input('nombres');
+        $autor->apellidos = $request->input('apellidos');
+        $autor->pais = $request->input('pais');
+        $autor->provincia = $request->input('provincia');
+        $autor->ciudad = $request->input('ciudad');
+        $autor->save();
+        return redirect()->route('autores.index')->with('status', 'Autor creado exitosamente');
     }
 
     /**
@@ -68,9 +78,17 @@ class AutorController extends Controller
      * @param  \App\Models\Autor  $autor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Autor $autor)
+    public function update(Request $request, int $id)
     {
         //
+        $autor = Autor::find($id);
+        $autor->nombres = $request->input('nombres');
+        $autor->apellidos = $request->input('apellidos');
+        $autor->pais = $request->input('pais');
+        $autor->provincia = $request->input('provincia');
+        $autor->ciudad = $request->input('ciudad');
+        $autor->update();
+        return redirect()->route('autores.index')->with('status', 'Autor actualizado exitosamente');
     }
 
     /**
@@ -79,8 +97,11 @@ class AutorController extends Controller
      * @param  \App\Models\Autor  $autor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Autor $autor)
+    public function destroy(int $id)
     {
         //
+        $autor = Autor::find($id);
+        $autor->delete();
+        return redirect()->route('autores.index')->with('status', 'Autor eliminado exitosamente');
     }
 }
