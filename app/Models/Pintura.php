@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
 
 /**
  * @property integer $id
@@ -28,6 +30,10 @@ class Pintura extends Model
     /**
      * @var array
      */
+    use HasFactory;
+    protected $table = "pinturas";
+    protected $primaryKey = "id";
+    public $timestamps = false;
     protected $fillable = ['id_autor', 'codigo', 'codigo_alternativo', 'nombre', 'siglo_año', 'firmado_atribuido_documento', 'ubicacion_firma', 'estado_conservacion', 'estado_integridad', 'ruta_imagen', 'tecnica', 'soporte', 'ubicacion_actual'];
 
     /**
@@ -49,8 +55,13 @@ class Pintura extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function autore()
+    public function autores()
     {
         return $this->belongsTo('App\Models\Autore', 'id_autor');
     }
+
+    public function getAutores(){
+        return $this->hasOne(Autor::class, "id", "id_autor");
+    }
+    
 }

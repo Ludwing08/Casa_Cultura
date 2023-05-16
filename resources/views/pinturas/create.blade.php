@@ -88,10 +88,9 @@
                             <div class="mb-3">
                                 <label for="" class="form-label">Autor</label>
                                 <select class="form-select form-select-md" name="id_autor" id="">
-                                    <option selected>Select one</option>
-                                    <option value="">New Delhi</option>
-                                    <option value="">Istanbul</option>
-                                    <option value="">Jakarta</option>
+                                    @foreach ($autores as $autor)
+                                        <option value="{{$autor->id}}" selected>{{$autor->nombres ." ". $autor->apellidos}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             
@@ -126,11 +125,94 @@
                                 <label for="" class="form-label">Escoja la imagen</label>
                                 <input type="file" class="form-control" name="ruta_imagen" id="imagen_seleccionada" placeholder="" aria-describedby="fileHelpId">
                                 <div id="fileHelpId" class="form-text">
-                                    <img src="" alt="Imagen de la pintura" id="preview" style="max-height: 300px; max-width: 300px;">
+                                    <img src="" id="preview" style="max-height: 300px; max-width: 300px;">
                                 </div>
                               </div>
                             </div>
                         </div>
+
+                        <!--Dimensiones-->
+                        <div class="row mt-4">
+                          <div class="card">
+                            <div class="card-body">
+                              <h4 class="card-title">Dimensiones</h4>
+
+                              <div class="row">
+
+                              <div class="col-4"> Obra en cm
+                                    <div class="mb-3">
+                                      <input type="text"
+                                        class="form-control" name="alto_obra" id="" aria-describedby="helpId" placeholder="Alto">
+                                    </div>
+                                  
+                                    <div class="mb-3">
+                                      <input type="text"
+                                        class="form-control" name="ancho_obra" id="" aria-describedby="helpId" placeholder="Ancho">
+                                    </div>
+
+                                    <div class="mb-3">
+                                      <input type="text"
+                                        class="form-control" name="profundidad_obra" id="" aria-describedby="helpId" placeholder="Prof.">
+                                    </div>
+                                  
+                                    <div class="mb-3">
+                                      <input type="text"
+                                        class="form-control" name="diametro_mayor_obra" id="" aria-describedby="helpId" placeholder="D.Mayor">
+                                    </div>
+
+                                    <div class="mb-3">
+                                      <input type="text"
+                                        class="form-control" name="diametro_menor_obra" id="" aria-describedby="helpId" placeholder="D.Menor">
+                                    </div>
+                              </div>
+                              
+
+                              <div class="col-4"> Plancha Grabado
+                                <div class="row">
+                                    <div class="mb-3">
+                                      <input type="text"
+                                        class="form-control" name="plancha_grabado_alto" id="" aria-describedby="helpId" placeholder="Alto">
+                                    </div>
+                                  
+                                    <div class="mb-3">
+                                      <input type="text"
+                                        class="form-control" name="plancha_grabado_ancho" id="" aria-describedby="helpId" placeholder="Ancho">
+                                    </div>
+
+                                    <div class="mb-3">
+                                      <input type="text"
+                                        class="form-control" name="plancha_grabado_numero" id="" aria-describedby="helpId" placeholder="Num.">
+                                    </div>
+                                    
+                                </div>
+                              </div>
+
+                              <div class="col-4"> Marco/Elemento
+                                <div class="row">
+                                    <div class="mb-3">
+                                      <input type="text"
+                                        class="form-control" name="marco_alto" id="" aria-describedby="helpId" placeholder="Alto">
+                                    </div>
+                                  
+                                    <div class="mb-3">
+                                      <input type="text"
+                                        class="form-control" name="marco_ancho" id="" aria-describedby="helpId" placeholder="Ancho">
+                                    </div>
+
+                                    <div class="mb-3">
+                                      <input type="text"
+                                        class="form-control" name="marco_profundidad" id="" aria-describedby="helpId" placeholder="Prof.">
+                                    </div>
+                                    
+                                </div>
+                              </div>
+
+                            </div>
+
+                            </div>
+                          </div>
+                        </div>
+
                     </div>
                 </div>
         
