@@ -23,7 +23,8 @@ class PinturaController extends Controller
     {
         //
         $pinturas = Pintura::all();
-        return view('pinturas.index', compact('pinturas'));
+        $autores = Autor::all();
+        return view('pinturas.index', compact(['pinturas','autores']));
     }
 
     /**
