@@ -22,6 +22,8 @@ class PinturaController extends Controller
     public function index()
     {
         //
+        $pinturas = Pintura::all();
+        return view('pinturas.index', compact('pinturas'));
     }
 
     /**
@@ -98,9 +100,11 @@ class PinturaController extends Controller
      * @param  \App\Models\Pintura  $pintura
      * @return \Illuminate\Http\Response
      */
-    public function show(Pintura $pintura)
+    public function show(int $id)
     {
         //
+        $pintura = Pintura::find($id);
+        return view('pinturas.index', compact('pintura'));
     }
 
     /**
@@ -112,6 +116,7 @@ class PinturaController extends Controller
     public function edit(Pintura $pintura)
     {
         //
+        
     }
 
     /**
@@ -121,9 +126,27 @@ class PinturaController extends Controller
      * @param  \App\Models\Pintura  $pintura
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pintura $pintura)
+    public function update(Request $request, int $id)
     {
         //
+        // $request->validate(
+        //     [
+        //         'nombre' => 'required'                
+        //     ]
+        //     );
+        $pintura = Pintura::find($id);
+        $pintura->nombre = $request->nombre;
+        $pintura->siglo_año=$request->siglo_año;        
+        if($imagen = $request->file('ruta_imagen')){
+            $rutaGuardarImagen = 'images/';
+            $imagenPintura = date('YmdHis') . "." . $imagen->getClientOriginalExtension();
+            $imagen->move($rutaGuardarImagen,$imagenPintura);
+            $pintura->ruta_imagen = "$imagenPintura";
+        }else{
+            unset($pintura->ruta_imagen);
+        }
+        $pintura->update();
+        return redirect()->route('pinturas.index');
     }
 
     /**
