@@ -1,0 +1,51 @@
+@extends('principal')
+@section('content')
+
+<!-- Agregar categoria -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#create">
+    Nuevo pintura
+</button>
+
+<div class="table-responsive">
+    <br>
+    <table class="table">
+        <thead class="bg-dark text-white">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Código</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Siglo / Año</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($pinturas as $pintura)
+            <tr class="">
+                <td scope="row">{{$pintura->id}}</td>
+                <td>{{$pintura->codigo}}</td>
+                <td>{{$pintura->nombre}}</td>
+                <td>{{$pintura->siglo_año}}</td>                
+                <td>
+                    <!--editar-->
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#edit{{$pintura->id}}">
+                        Editar
+                    </button>
+                    <!--eliminar-->
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete{{$pintura->id}}">
+                        Eliminar
+                    </button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#show{{$pintura->id}}">
+                        Mostrar
+                    </button>
+                </td>
+            </tr>
+            @include('pinturas.info')
+            @endforeach
+
+        </tbody>
+    </table>
+</div>
+
+@include('pinturas.create')
+
+@endsection
