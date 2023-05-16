@@ -26,6 +26,7 @@ class PinturaController extends Controller
     public function create()
     {
         //
+        return view("pinturas.create");
     }
 
     /**

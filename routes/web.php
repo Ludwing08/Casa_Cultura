@@ -26,3 +26,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource("autores", App\Http\Controllers\AutorController::class);
 
 Route::resource("pinturas", App\Http\Controllers\PinturaController::class);
+

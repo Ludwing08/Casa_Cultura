@@ -27,7 +27,7 @@
     <nav class="navbar navbar-expand navbar-dark bg-dark">
         <ul class="nav navbar-nav">
             <li class="nav-item">
-                <a class="nav-link active" href="{{'/'}}" aria-current="page">Pinturas <span class="visually-hidden">(current)</span></a>
+                <a class="nav-link active" href="{{'/'}}" aria-current="page">Inicio <span class="visually-hidden">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{url('autores')}}">Autores</a>
