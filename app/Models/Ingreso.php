@@ -19,6 +19,7 @@ class Ingreso extends Model
     /**
      * @var array
      */
+    public $timestamps = false;
     protected $fillable = ['id_pintura', 'forma_ingreso', 'valor', 'fecha_doc_ingreso', 'fecha_registro', 'observaciones', 'avaluo'];
 
     /**

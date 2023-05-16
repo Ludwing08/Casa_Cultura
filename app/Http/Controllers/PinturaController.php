@@ -7,6 +7,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Autor;
+use App\Models\Dimension;
+use App\Models\Ingreso;
+
+use Illuminate\Support\Facades\DB;
 
 class PinturaController extends Controller
 {
@@ -40,29 +44,53 @@ class PinturaController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $request -> validate([
-            "codigo" => "required",
-            "nombre" => "required",
-            "sigo_año" => "required",
-            "firmado_atribuido_documento" => "required",
-            "estado_conservacion" => "required",
-            "estado_integridad" => "required",
-            "ruta_imagen" => "required|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
-            "id_autor" => "required"
-        ]);
 
-        $pintura = $request->all(); 
+        DB::beginTransaction();
+        try {
 
-        if($imagen = $request->file("ruta_imagen")){
-            $rutaGuardarImagen = "images/";
-            $imagenPintura = date("YmdHis").".".$imagen->getClientOriginalExtension();
-            $imagen->move($rutaGuardarImagen, $imagenPintura);
-            $pintura["ruta_imagen"] = "$imagenPintura";
+            $pintura = new Pintura();
+            $pintura->codigo = $request->input("codigo");
+            $pintura->codigo_alternativo = $request->input("codigo_alternativo");
+            $pintura->ubicacion_actual = $request->input("ubicacion_actual");
+            $pintura->nombre = $request->input("nombre");
+            $pintura->siglo_año = $request->input("siglo_año");
+            $pintura->firmado_atribuido_documento = $request->input("firmado_atribuido_documento");
+            $pintura->estado_conservacion = $request->input("estado_conservacion");
+            $pintura->estado_integridad = $request->input("estado_integridad");
+            $pintura->tecnica = $request->input("tecnica");
+            $pintura->soporte = $request->input("soporte");
+            $pintura->id_autor = $request->input("id_autor");
+            $pintura->ruta_imagen = $request->validate(["ruta_imagen" => "required|image|mimes:jpeg,png,jpg,gif,svg|max:2048"]);
+
+
+            //$pintura = $request->all(); 
+
+            if($imagen = $request->file("ruta_imagen")){
+                $rutaGuardarImagen = "images/";
+                $imagenPintura = date("YmdHis").".".$imagen->getClientOriginalExtension();
+                $imagen->move($rutaGuardarImagen, $imagenPintura);
+                $pintura->ruta_imagen = "$imagenPintura";
+            }
+
+            $pintura->save();
+            
+            //Agregar Dimension en la tabla dimensiones
+            self::addDimensiones($request, $pintura->id);
+
+            //Agregar Ingreso en la tabla ingresos
+            self::addIngreso($request, $pintura->id);
+            
+            DB::commit();
+
+            return redirect()->route("pinturas.index")->with("mensaje", "Pintura creada con éxito");
+
+            //Ingreso   
+        } catch (\Exception $e) {
+            DB::rollback();
+            return $e->getMessage();
         }
 
-        Pintura::create($pintura);
-    }
+        }
 
     /**
      * Display the specified resource.
@@ -108,4 +136,42 @@ class PinturaController extends Controller
     {
         //
     }
+
+    public function addDimensiones( Request $request, $id_pintura ){
+
+        $dimension = new Dimension();
+        $dimension->id_pintura = $id_pintura;
+        $dimension->alto_obra = $request->input("alto_obra");
+        $dimension->ancho_obra = $request->input("ancho_obra");
+        $dimension->profundidad_obra =$request->input("profundidad_obra");
+        $dimension->diametro_mayor_obra = $request->input("diametro_mayor_obra");
+        $dimension->diametro_menor_obra = $request->input("diametro_menor_obra");
+        $dimension->plancha_grabado_alto = $request->input("plancha_grabado_alto");
+        $dimension->plancha_grabado_ancho = $request->input("plancha_grabado_ancho");
+        $dimension->plancha_grabado_numero = $request->input("plancha_grabado_numero");
+        $dimension->marco_alto = $request->input("marco_alto");
+        $dimension->marco_ancho = $request->input("marco_ancho");
+        $dimension->marco_profundidad = $request->input("marco_profundidad");
+
+        $dimension->save();
+        
+
+    }
+
+    public function addIngreso( Request $request, $id_pintura ){
+
+        $ingreso = new Ingreso();
+        $ingreso->id_pintura = $id_pintura;
+        $ingreso->forma_ingreso = $request->input("forma_ingreso");
+        $ingreso->valor = $request->input("valor");
+        $ingreso->fecha_doc_ingreso = $request->input("fecha_doc_ingreso");
+        $ingreso->fecha_registro = $request->input("fecha_registro");
+        $ingreso->observaciones = $request->input("observaciones");
+        $ingreso->avaluo = $request->input("avaluo");
+        
+        $ingreso->save();
+
+    }
 }
+
+ 

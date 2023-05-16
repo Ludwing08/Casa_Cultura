@@ -27,7 +27,7 @@ class Dimension extends Model
      * @var string
      */
     protected $table = 'dimensiones';
-
+    public $timestamps = false;
     /**
      * @var array
      */

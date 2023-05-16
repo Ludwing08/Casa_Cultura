@@ -2,7 +2,7 @@
 
 @section('content')
     
-    <form action="{{ route('pinturas.store') }}" method="Post" enctype="multipart/form-data">
+    <form action="{{ route('pinturas.store') }}" method="POST" enctype="multipart/form-data">
 
         @csrf
 
@@ -60,19 +60,19 @@
     
                             
                             <div class="form-check">
-                              <input class="form-check-input" type="radio" name="firmado_atribuido_documento" id="">
+                              <input class="form-check-input" type="radio" name="firmado_atribuido_documento" id="" value="firmado">
                               <label class="form-check-label" for="">
                                 Firmado
                               </label>
                             </div>
                             <div class="form-check">
-                              <input class="form-check-input" type="radio" name="" id="" checked disabled>
+                              <input class="form-check-input" type="radio" name="firmado_atribuido_documento" id="" value="atribuido">
                               <label class="form-check-label" for="">
                                 Atribuido
                               </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="" id="" checked disabled>
+                                <input class="form-check-input" type="radio" name="firmado_atribuido_documento" id="" value="documento">
                                 <label class="form-check-label" for="">
                                   Documento
                                 </label>
@@ -123,7 +123,7 @@
                               <h4 class="card-title">Imagen Pintura</h4>
                               <div class="mb-3">
                                 <label for="" class="form-label">Escoja la imagen</label>
-                                <input type="file" class="form-control" name="ruta_imagen" id="imagen_seleccionada" placeholder="" aria-describedby="fileHelpId">
+                                <input type="file" accept="image/*" class="form-control" name="ruta_imagen" id="imagen_seleccionada" placeholder="" aria-describedby="fileHelpId">
                                 <div id="fileHelpId" class="form-text">
                                     <img src="" id="preview" style="max-height: 300px; max-width: 300px;">
                                 </div>
@@ -225,19 +225,19 @@
                               <h5 class="card-title">Estado de Conservación:</h5>
                               
                               <div class="form-check">
-                                <input class="form-check-input" type="radio" name="estado_conservacion" id="">
+                                <input class="form-check-input" type="radio" name="estado_conservacion" id="" value="bueno" >
                                 <label class="form-check-label" for="">
                                   Bueno
                                 </label>
                               </div>
                               <div class="form-check">
-                                <input class="form-check-input" type="radio" name="" id="" checked disabled>
+                                <input class="form-check-input" type="radio" name="estado_conservacion" id="" value="regular">
                                 <label class="form-check-label" for="">
                                   Regular
                                 </label>
                               </div>
                               <div class="form-check">
-                                  <input class="form-check-input" type="radio" name="" id="" checked disabled>
+                                  <input class="form-check-input" type="radio" name="estado_conservacion" id="" value="malo">
                                   <label class="form-check-label" for="">
                                     Malo
                                   </label>
@@ -253,31 +253,31 @@
                             <div class="card-body">
                               <h5 class="card-title">Estado de Integridad:</h5>
                               <div class="form-check">
-                                <input class="form-check-input" type="radio" name="estado_integridad" id="">
+                                <input class="form-check-input" type="radio" name="estado_integridad" id="" value="completo">
                                 <label class="form-check-label" for="">
                                   Completo
                                 </label>
                               </div>
                               <div class="form-check">
-                                <input class="form-check-input" type="radio" name="" id="" checked disabled>
+                                <input class="form-check-input" type="radio" name="estado_integridad" id="" value="incompleto">
                                 <label class="form-check-label" for="">
                                   Incompleto
                                 </label>
                               </div>
                               <div class="form-check">
-                                  <input class="form-check-input" type="radio" name="" id="" checked disabled>
-                                  <label class="form-check-label" for="">
+                                  <input class="form-check-input" type="radio" name="estado_integridad" id="" value="unido">
+                                  <label class="form-check-label" for=""> 
                                     Unido
                                   </label>
                               </div>
                               <div class="form-check">
-                                <input class="form-check-input" type="radio" name="" id="" checked disabled>
+                                <input class="form-check-input" type="radio" name="estado_integridad" id="" value="fragmentado">
                                 <label class="form-check-label" for="">
                                   Fragmentado
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="" id="" checked disabled>
+                                <input class="form-check-input" type="radio" name="estado_integridad" id="" value="agregado">
                                 <label class="form-check-label" for="">
                                   Agregado
                                 </label>
@@ -323,14 +323,14 @@
                                 <div class="col">
                                     <div class="mb-3">
                                         <label for="" class="form-label">Fecha Doc. Ingreso</label>
-                                        <input type="text"
+                                        <input type="date"
                                           class="form-control" name="fecha_doc_ingreso" id="" aria-describedby="helpId" placeholder="">
                                       </div>
                                 </div>
                                 <div class="col">
                                     <div class="mb-3">
                                         <label for="" class="form-label">Fecha registro</label>
-                                        <input type="text"
+                                        <input type="date"
                                           class="form-control" name="fecha_registro" id="" aria-describedby="helpId" placeholder="">
                                       </div>
                                 </div>
@@ -343,15 +343,12 @@
                                     class="form-control" name="observaciones" id="" aria-describedby="helpId" placeholder="">
                             </div>
                               
-    
-                            
-    
                             </div>
                         </div>
                     </div>
                 </div>
                     
-                <button type="submit" class="btn btn-primary">Guardar Pintura</button>
+                <button type="submit" class="btn btn-primary mt-3 ">Guardar Pintura</button>
                     
             </div>
             
