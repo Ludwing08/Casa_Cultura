@@ -41,7 +41,7 @@ class Pintura extends Model
      */
     public function dimensiones()
     {
-        return $this->hasMany('App\Models\Dimensione', 'id_pintura');
+        return $this->hasMany('App\Models\Dimension', 'id_pintura');
     }
 
     /**
@@ -57,7 +57,7 @@ class Pintura extends Model
      */
     public function autores()
     {
-        return $this->belongsTo('App\Models\Autore', 'id_autor');
+        return $this->belongsTo('App\Models\Autor', 'id_autor');
     }
 
     public function getAutores(){

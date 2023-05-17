@@ -19,12 +19,17 @@ class PinturaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public int $id = 0; 
+     
     public function index()
     {
         //
         $pinturas = Pintura::all();
         $autores = Autor::all();
-        return view('pinturas.index', compact(['pinturas','autores']));
+        $dimensiones = Dimension::all();
+        $ingresos = Ingreso::all();        
+        return view('pinturas.index', compact(['pinturas', 'autores']));
     }
 
     /**
@@ -68,21 +73,21 @@ class PinturaController extends Controller
 
             //$pintura = $request->all(); 
 
-            if($imagen = $request->file("ruta_imagen")){
+            if ($imagen = $request->file("ruta_imagen")) {
                 $rutaGuardarImagen = "images/";
-                $imagenPintura = date("YmdHis").".".$imagen->getClientOriginalExtension();
+                $imagenPintura = date("YmdHis") . "." . $imagen->getClientOriginalExtension();
                 $imagen->move($rutaGuardarImagen, $imagenPintura);
                 $pintura->ruta_imagen = "$imagenPintura";
             }
 
             $pintura->save();
-            
+
             //Agregar Dimension en la tabla dimensiones
             self::addDimensiones($request, $pintura->id);
 
             //Agregar Ingreso en la tabla ingresos
             self::addIngreso($request, $pintura->id);
-            
+
             DB::commit();
 
             return redirect()->route("pinturas.index")->with("mensaje", "Pintura creada con éxito");
@@ -92,8 +97,7 @@ class PinturaController extends Controller
             DB::rollback();
             return $e->getMessage();
         }
-
-        }
+    }
 
     /**
      * Display the specified resource.
@@ -105,7 +109,9 @@ class PinturaController extends Controller
     {
         //
         $pintura = Pintura::find($id);
-        return view('pinturas.index', compact('pintura'));
+        $dimensiones = Dimension::find($id);
+        $ingresos = $this->formaIngreso($id);
+        return view('pinturas.index', compact(['pintura', 'dimensiones', 'ingresos']));
     }
 
     /**
@@ -117,7 +123,7 @@ class PinturaController extends Controller
     public function edit(Pintura $pintura)
     {
         //
-        
+
     }
 
     /**
@@ -137,16 +143,18 @@ class PinturaController extends Controller
         //     );
         $pintura = Pintura::find($id);
         $pintura->nombre = $request->nombre;
-        $pintura->siglo_año=$request->siglo_año;        
-        if($imagen = $request->file('ruta_imagen')){
+        $pintura->siglo_año = $request->siglo_año;
+        if ($imagen = $request->file('ruta_imagen')) {
             $rutaGuardarImagen = 'images/';
             $imagenPintura = date('YmdHis') . "." . $imagen->getClientOriginalExtension();
-            $imagen->move($rutaGuardarImagen,$imagenPintura);
+            $imagen->move($rutaGuardarImagen, $imagenPintura);
             $pintura->ruta_imagen = "$imagenPintura";
-        }else{
+        } else {
             unset($pintura->ruta_imagen);
         }
         $pintura->update();
+        
+
         return redirect()->route('pinturas.index');
     }
 
@@ -161,13 +169,14 @@ class PinturaController extends Controller
         //
     }
 
-    public function addDimensiones( Request $request, $id_pintura ){
+    public function addDimensiones(Request $request, $id_pintura)
+    {
 
         $dimension = new Dimension();
         $dimension->id_pintura = $id_pintura;
         $dimension->alto_obra = $request->input("alto_obra");
         $dimension->ancho_obra = $request->input("ancho_obra");
-        $dimension->profundidad_obra =$request->input("profundidad_obra");
+        $dimension->profundidad_obra = $request->input("profundidad_obra");
         $dimension->diametro_mayor_obra = $request->input("diametro_mayor_obra");
         $dimension->diametro_menor_obra = $request->input("diametro_menor_obra");
         $dimension->plancha_grabado_alto = $request->input("plancha_grabado_alto");
@@ -178,11 +187,10 @@ class PinturaController extends Controller
         $dimension->marco_profundidad = $request->input("marco_profundidad");
 
         $dimension->save();
-        
-
     }
 
-    public function addIngreso( Request $request, $id_pintura ){
+    public function addIngreso(Request $request, $id_pintura)
+    {
 
         $ingreso = new Ingreso();
         $ingreso->id_pintura = $id_pintura;
@@ -192,10 +200,18 @@ class PinturaController extends Controller
         $ingreso->fecha_registro = $request->input("fecha_registro");
         $ingreso->observaciones = $request->input("observaciones");
         $ingreso->avaluo = $request->input("avaluo");
-        
-        $ingreso->save();
 
+        $ingreso->save();
+    }
+
+
+    public function formaIngreso(int $id)
+    {
+        $resultado = DB::table('ingresos')
+            ->select('forma_ingreso')
+            ->where('id_pintura', $id)
+            ->first();
+
+        return $resultado->forma_ingreso;
     }
 }
-
- 

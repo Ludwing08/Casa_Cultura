@@ -24,8 +24,12 @@
                 <td scope="row">{{$pintura->id}}</td>
                 <td>{{$pintura->codigo}}</td>
                 <td>{{$pintura->nombre}}</td>
-                <td>{{$pintura->siglo_año}}</td>                
+                <td>{{$pintura->siglo_año}}</td>
                 <td>
+                    <!-- Mostrar -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#show{{$pintura->id}}">
+                        Mostrar
+                    </button>
                     <!--editar-->
                     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#edit{{$pintura->id}}">
                         Editar
@@ -34,9 +38,7 @@
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete{{$pintura->id}}">
                         Eliminar
                     </button>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#show{{$pintura->id}}">
-                        Mostrar
-                    </button>
+
                 </td>
             </tr>
             @include('pinturas.info')
