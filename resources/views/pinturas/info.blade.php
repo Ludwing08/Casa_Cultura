@@ -155,7 +155,7 @@
                                                           </div>
 
                                                           <div class="mb-3">
-                                                              <input type="text" class="form-control" name="plancha_grabado_ancho" id="" aria-describedby="helpId" placeholder="Ancho" value="{{ $pintura->dimensiones->first()->plancha_gradado_ancho }}">
+                                                              <input type="text" class="form-control" name="plancha_grabado_ancho" id="" aria-describedby="helpId" placeholder="Ancho" value="{{ $pintura->dimensiones->first()->plancha_grabado_ancho }}">
                                                           </div>
 
                                                           <div class="mb-3">

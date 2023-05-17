@@ -221,6 +221,21 @@ class PinturaController extends Controller
 
             $ingreso->save();
 
+            $dimension = Dimension::where('id_pintura', $pintura->id)->firstOrFail();
+            $dimension->alto_obra = $request->input("alto_obra");
+            $dimension->ancho_obra = $request->input("ancho_obra");
+            $dimension->profundidad_obra = $request->input("profundidad_obra");
+            $dimension->diametro_mayor_obra = $request->input("diametro_mayor_obra");
+            $dimension->diametro_menor_obra = $request->input("diametro_menor_obra");
+            $dimension->plancha_grabado_alto = $request->input("plancha_grabado_alto");
+            $dimension->plancha_grabado_ancho = $request->input("plancha_grabado_ancho");
+            $dimension->plancha_grabado_numero = $request->input("plancha_grabado_numero");
+            $dimension->marco_alto = $request->input("marco_alto");
+            $dimension->marco_ancho = $request->input("marco_ancho");
+            $dimension->marco_profundidad = $request->input("marco_profundidad");
+
+            $dimension->save();
+
             DB::commit();
             return redirect()->route('pinturas.index');
         } catch (\Exception $e) {
