@@ -2,9 +2,8 @@
 @section('content')
 
 <!-- Agregar categoria -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#create">
-    Nuevo pintura
-</button>
+<a href="{{ route('pinturas.create') }}" class="btn btn-primary">Nuevo pintura</a>
+
 
 <div class="table-responsive">
     <br>
@@ -46,6 +45,6 @@
     </table>
 </div>
 
-@include('pinturas.create')
+
 
 @endsection
