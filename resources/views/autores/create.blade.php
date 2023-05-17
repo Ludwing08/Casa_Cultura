@@ -32,16 +32,16 @@
                     <!--Provincia-->
                     <label class="form-label">Provincia</label>
                     <input type="text"
-                    class="form-control" name="provincia" id="" aria-describedby="helpId" placeholder="" required>
+                    class="form-control" name="provincia" id="" aria-describedby="helpId" placeholder="">
 
                     <!--Ciudad-->
                     <label class="form-label">Ciudad</label>
                     <input type="text"
-                    class="form-control" name="ciudad" id="" aria-describedby="helpId" placeholder="" required>
+                    class="form-control" name="ciudad" id="" aria-describedby="helpId" placeholder="">
 
                     <!--Biografia-->
                     <label class="form-label">Biografía</label>
-                    <textarea class="form-control" name="biografia" id="" aria-describedby="helpId" placeholder="" required></textarea>
+                    <textarea class="form-control" name="biografia" id="" aria-describedby="helpId" placeholder=""></textarea>
                     
                 </div>
             </div>

@@ -17,17 +17,17 @@
                   <!--Nombres-->
                   <label class="form-label">Nombres</label>
                   <input type="text" required
-                  class="form-control" name="nombres" id="" aria-describedby="helpId" placeholder="" value="{{$autor->nombres}}" >
+                  class="form-control" name="nombres" id="" aria-describedby="helpId" placeholder="" value="{{$autor->nombres}}" required>
 
                   <!--Apellidos-->
                   <label class="form-label">Apellidos</label>
                   <input type="text" required
-                  class="form-control" name="apellidos" id="" aria-describedby="helpId" placeholder="" value="{{$autor->apellidos}}" >
+                  class="form-control" name="apellidos" id="" aria-describedby="helpId" placeholder="" value="{{$autor->apellidos}}" required>
 
                   <!--Pais-->
                   <label class="form-label">Pais</label>
                   <input type="text" required
-                  class="form-control" name="pais" id="" aria-describedby="helpId" placeholder="" value="{{$autor->pais}}">
+                  class="form-control" name="pais" id="" aria-describedby="helpId" placeholder="" value="{{$autor->pais}}" required>
                   
                   <!--Provincia-->
                   <label class="form-label">Provincia</label>
