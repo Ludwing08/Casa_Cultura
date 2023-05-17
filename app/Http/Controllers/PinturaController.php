@@ -236,9 +236,34 @@ class PinturaController extends Controller
      * @param  \App\Models\Pintura  $pintura
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pintura $pintura)
+    public function destroy(int $id)
     {
         //
+        $pintura = Pintura::find($id);
+        
+        if ($pintura) {
+            // Obtén los registros hijos asociados al modelo pintura
+            $ingresos = $pintura->ingresos;
+            
+            // Elimina los registros hijos
+            foreach ($ingresos as $ingreso) {
+                $ingreso->delete();
+            }
+
+            $dimensiones = $pintura->dimensiones;
+            
+            // Elimina los registros hijos
+            foreach ($dimensiones as $dimension) {
+                $dimension->delete();
+            }
+    
+            // Elimina el registro pintura
+            $pintura->delete();
+    
+            return redirect()->route('pinturas.index')->with('status', 'Autor eliminado exitosamente');
+        }
+
+        return redirect()->route('pinturas.index')->with('error', 'Error');        
     }
 
     public function addDimensiones(Request $request, $id_pintura)

@@ -680,7 +680,31 @@
       </div>
   </div>
 
+  <!-- Modal Eliminar-->
+  <div class="modal fade" id="delete{{$pintura->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminar Autor</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
 
+        <!--Formulario-->
+        <form method="post" action="{{route('pinturas.destroy', $pintura->id)}}">
+            @csrf  
+            @method('DELETE')
+            <div class="modal-body">
+                Estas seguro de eliminar la pintura <strong>{{$pintura->nombre}}?</strong>
+            </div>
+        
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Eliminar</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
 
 
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

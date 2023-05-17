@@ -25,21 +25,23 @@
 <body>
   <header>
     <nav class="navbar navbar-expand navbar-dark bg-dark">
-        <ul class="nav navbar-nav">
-          <form action=" {{ route('logout') }} " method="post">
-            @csrf
-            <li class="nav-item">
-              <button class="nav-link active"  type="submit" aria-current="page">Log out <span class="visually-hidden">(current)</span></button>
-          </li>
-          </form>
-            
+      <div class="container-fluid">
+        <ul class="nav navbar-nav">          
             <li class="nav-item">
                 <a class="nav-link" href="{{url('autores')}}">Autores</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{url('pinturas')}}">Pinturas</a>
             </li>
-        </ul>
+            </ul>
+            <form class="d-flex" action=" {{ route('logout') }} " method="post">
+            @csrf
+            <li class="nav-item">
+              <button class="btn btn-outline-success me-2"  type="submit" aria-current="page">Log out <span class="visually-hidden">(current)</span></button>
+          </li>
+          </form>
+        
+        </div>
     </nav>
 
   </header>
