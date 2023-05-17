@@ -1,8 +1,13 @@
-@extends('principal')
 
-@section('content')
-    
-    <form action="{{ route('pinturas.store') }}" method="POST" enctype="multipart/form-data">
+<div class="modal fade modal-xl" id="create" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Autor</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <form action="{{ route('pinturas.store') }}" method="POST" enctype="multipart/form-data">
 
         @csrf
 
@@ -10,11 +15,10 @@
           <div class="card-body">
 
             <div class="container">
-                <!--Titulo-->
-                <div class="row justify-content-center align-items-center g-2">
-                    <div class="col-12">
-                        <h2>Registro de Pinturas</h2>
-                    </div>  
+              <!--Titulo-->
+              <div class="row justify-content-center align-items-center g-2">
+                <div class="col-12">
+                  <h2>Registro de Pinturas</h2>
                 </div>
                 
                 <!--Datos Generales-->
@@ -71,20 +75,15 @@
                                 Atribuido
                               </label>
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="firmado_atribuido_documento" id="" value="documento">
-                                <label class="form-check-label" for="">
-                                  Documento
-                                </label>
-                            </div>
-    
+
                             <div class="mb-3">
-                                <label for="" class="form-label">Ubicación de la firma</label>
-                                <input type="text"
-                                  class="form-control" name="ubicacion_firma" id="" aria-describedby="helpId" placeholder="">
+                              <input type="text" class="form-control" name="ancho_obra" id="" aria-describedby="helpId" placeholder="Ancho">
                             </div>
-    
-    
+
+                            <div class="mb-3">
+                              <input type="text" class="form-control" name="profundidad_obra" id="" aria-describedby="helpId" placeholder="Prof.">
+                            </div>
+
                             <div class="mb-3">
                                 <label for="" class="form-label">Autor</label>
                                 <select class="form-select form-select-md" name="id_autor" id="" required>
@@ -110,17 +109,11 @@
                                       </div>
                                 </div>
                             </div>
-    
-    
                           </div>
-                        </div>
-                    </div>
-        
-                    <!--Imagen-->
-                    <div class="col-5">
-                        <div class="card text-start">
-                            <div class="card-body">
-                              <h4 class="card-title">Imagen Pintura</h4>
+
+
+                          <div class="col-4"> Plancha Grabado
+                            <div class="row">
                               <div class="mb-3">
                                 <label for="" class="form-label">Escoja la imagen</label>
                                 <input type="file" accept="image/*" class="form-control" name="ruta_imagen" id="imagen_seleccionada" placeholder="" aria-describedby="fileHelpId" required>
@@ -128,8 +121,6 @@
                                     <img src="" id="preview" style="max-height: 300px; max-width: 300px;">
                                 </div>
                               </div>
-                            </div>
-                        </div>
 
                         <!--Dimensiones-->
                         <div class="row mt-4">
@@ -208,10 +199,7 @@
                               </div>
 
                             </div>
-
-                            </div>
                           </div>
-                        </div>
 
                     </div>
                 </div>
@@ -230,21 +218,21 @@
                                   Bueno
                                 </label>
                               </div>
-                              <div class="form-check">
-                                <input class="form-check-input" type="radio" name="estado_conservacion" id="" value="regular">
-                                <label class="form-check-label" for="">
-                                  Regular
-                                </label>
+
+                              <div class="mb-3">
+                                <input type="text" class="form-control" name="marco_ancho" id="" aria-describedby="helpId" placeholder="Ancho">
                               </div>
-                              <div class="form-check">
-                                  <input class="form-check-input" type="radio" name="estado_conservacion" id="" value="malo">
-                                  <label class="form-check-label" for="">
-                                    Malo
-                                  </label>
+
+                              <div class="mb-3">
+                                <input type="text" class="form-control" name="marco_profundidad" id="" aria-describedby="helpId" placeholder="Prof.">
                               </div>
-    
+
                             </div>
+                          </div>
+
                         </div>
+
+                      </div>
                     </div>
         
                     <!--Estado Integridad-->
@@ -286,6 +274,7 @@
                             </div>
                         </div>
                     </div>
+                  </div>
                 </div>
         
                 <!--Ingreso-->
@@ -345,36 +334,64 @@
                               
                             </div>
                         </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col">
+                          <div class="mb-3">
+                            <label for="" class="form-label">Fecha Doc. Ingreso</label>
+                            <input type="date" class="form-control" name="fecha_doc_ingreso" id="" aria-describedby="helpId" placeholder="">
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="mb-3">
+                            <label for="" class="form-label">Fecha registro</label>
+                            <input type="date" class="form-control" name="fecha_registro" id="" aria-describedby="helpId" placeholder="">
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div class="mb-3">
+                        <label for="" class="form-label">Observaciones</label>
+                        <input type="text" class="form-control" name="observaciones" id="" aria-describedby="helpId" placeholder="">
+                      </div>
+
                     </div>
+                  </div>
                 </div>
-                    
-                <button type="submit" class="btn btn-primary mt-3 ">Guardar Pintura</button>
-                    
+              </div>
+
+              <button type="submit" class="btn btn-primary mt-3 ">Guardar Pintura</button>
+
             </div>
-            
+
           </div>
         </div>
 
-       
-    </form>
-    
 
-    <script>
-        const input = document.getElementById('imagen_seleccionada');
-        const preview = document.getElementById('preview');
+      </form>
+    </div>
+  </div>
+</div>
 
-        input.addEventListener('change', () => {
-            const file = input.files[0];
-            const reader = new FileReader();
 
-            reader.addEventListener('load', () => {
-            preview.src = reader.result;
-            });
 
-            if (file) {
-            reader.readAsDataURL(file);
-            }
-        });
-    </script>
+<script>
+  const input = document.getElementById('imagen_seleccionada');
+  const preview = document.getElementById('preview');
 
-@endsection
+  input.addEventListener('change', () => {
+    const file = input.files[0];
+    const reader = new FileReader();
+
+    reader.addEventListener('load', () => {
+      preview.src = reader.result;
+    });
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  });
+</script>
+
