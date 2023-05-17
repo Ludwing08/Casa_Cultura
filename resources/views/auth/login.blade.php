@@ -24,7 +24,7 @@
                           style="width: 185px;" alt="logo">
                         <h4 class="mt-1 mb-5 pb-1">Inicio de Sesión</h4>
                       </div>
-      
+
                       <form method="POST" action="{{route('login')}}">
                         @csrf
                         @method('post')
@@ -34,14 +34,22 @@
                         <div class="form-outline mb-4">
                             <label class="form-label" for="form2Example11">Usuario</label>
                           <input type="email" name="email" id="form2Example11" class="form-control"
-                            placeholder="ex: carlos@gmail.com" />
+                            placeholder="ex: carlos@gmail.com" value="{{ old('email') }}"/>
                           
+                            @error('email')
+                              <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
 
                         <!-- Contraseña input --> 
                         <div class="form-outline mb-4">
                             <label class="form-label" for="form2Example22">Contraseña</label>
-                          <input type="password" name="password" id="form2Example22" class="form-control" />
+                          <input type="password" name="password" id="form2Example22" class="form-control" value="{{ old('password') }}"/>
+
+                          @error('password')
+                              <small class="text-danger">{{ $message }}</small>
+                          @enderror
+
                         </div>
       
                         <div class="text-center pt-1 mb-5 pb-1">

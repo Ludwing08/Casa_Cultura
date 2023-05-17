@@ -29,31 +29,47 @@
                         <form action="{{route('register')}}" method="post">
                           @csrf
                           @method('post')
+                          
+                          @dump($errors)->all()
+
                           <!--Nombre-->
                           <div class="form-outline mb-4">
                             <label class="form-label" for="form2Example11">Usuario</label>
                             <input type="text" name="name" id="form2Example11" class="form-control"
-                              placeholder="Usuario"/>
+                              placeholder="Usuario" value="{{ old('name') }}"/>
+
+                              @error('name')
+                                <small class="text-danger">{{ $message }}</small>
+                              @enderror
+
                           </div>
 
                           <!--Email-->
                           <div class="form-outline mb-4">
                               <label class="form-label" for="form2Example11">Correo Electrónico</label>
                               <input type="email" name="email" id="form2Example11" class="form-control"
-                                placeholder="ex: carlos@gmail.com "/>
+                                placeholder="ex: carlos@gmail.com " value="{{ old('email') }}"/>
+                                @error('email')
+                                <small class="text-danger">{{ $message }}</small>
+                              @enderror
                           </div>
         
                           <!--Contraseña-->
                           <div class="form-outline mb-4">
                             <label class="form-label" for="form2Example22">Contraseña</label>
-                            <input type="password" name="password" id="form2Example22" class="form-control" />
-                            
+                            <input type="password" name="password" id="form2Example22" class="form-control" value="{{ old('password') }}"/>
+                            @error('password')
+                              <small class="text-danger">{{ $message }}</small>
+                            @enderror
                           </div>
 
                           <!--Confirmar Contraseña-->
                           <div class="form-outline mb-4">
                               <label class="form-label" for="form2Example22">Confirmar Contraseña</label>
-                              <input type="password" name="password_confirmation" id="form2Example22" class="form-control" />
+                              <input type="password" name="password_confirmation" id="form2Example22" class="form-control" value="{{ old('password') }}"/>
+                              @error('password_confirmation')
+                              <small class="text-danger">{{ $message }}</small>
+                            @enderror
                           </div>
         
                           <div class="d-flex align-items-center justify-content-center pb-4">

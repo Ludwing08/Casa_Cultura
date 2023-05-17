@@ -32,7 +32,7 @@ return [
         'string' => 'The :attribute must be between :min and :max characters.',
     ],
     'boolean' => 'The :attribute field must be true or false.',
-    'confirmed' => 'The :attribute confirmation does not match.',
+    'confirmed' => 'La :attribute debe ser la misma.',
     'current_password' => 'The password is incorrect.',
     'date' => 'The :attribute is not a valid date.',
     'date_equals' => 'The :attribute must be a date equal to :date.',
@@ -100,7 +100,7 @@ return [
         'array' => 'The :attribute must have at least :min items.',
         'file' => 'The :attribute must be at least :min kilobytes.',
         'numeric' => 'The :attribute must be at least :min.',
-        'string' => 'The :attribute must be at least :min characters.',
+        'string' => 'La :attribute debe ser de por lo menos :min caracteres.',
     ],
     'min_digits' => 'The :attribute must have at least :min digits.',
     'missing' => 'The :attribute field must be missing.',
@@ -125,7 +125,7 @@ return [
     'prohibited_unless' => 'The :attribute field is prohibited unless :other is in :values.',
     'prohibits' => 'The :attribute field prohibits :other from being present.',
     'regex' => 'The :attribute format is invalid.',
-    'required' => 'The :attribute field is required.',
+    'required' => 'El campo :attribute es requerido.',
     'required_array_keys' => 'The :attribute field must contain entries for: :values.',
     'required_if' => 'The :attribute field is required when :other is :value.',
     'required_if_accepted' => 'The :attribute field is required when :other is accepted.',
@@ -179,6 +179,11 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'name' =>'nombre',
+        'email' =>'correo electrónico',
+        'password' =>'contraseña',
+        'password_confirmation' =>'confirmación de contraseña',
+    ],
 
 ];
