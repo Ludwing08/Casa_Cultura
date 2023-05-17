@@ -20,15 +20,15 @@ class PinturaController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     public int $id = 0; 
-     
+
+
     public function index()
     {
         //
         $pinturas = Pintura::all();
         $autores = Autor::all();
         $dimensiones = Dimension::all();
-        $ingresos = Ingreso::all();        
+        $ingresos = Ingreso::all();
         return view('pinturas.index', compact(['pinturas', 'autores']));
     }
 
@@ -133,30 +133,99 @@ class PinturaController extends Controller
      * @param  \App\Models\Pintura  $pintura
      * @return \Illuminate\Http\Response
      */
+    // public function update(Request $request, int $id)
+    // {
+
+    //     $pintura = Pintura::find($id);
+    //     $pintura->codigo_alternativo = $request->codigo_alternativo;
+    //     $pintura->nombre = $request->nombre;
+    //     $pintura->siglo_año = $request->siglo_año;
+    //     $pintura->firmado_atribuido_documento = $request->firmado_atribuido_documento;
+    //     $pintura->ubicacion_firma = $request->ubicacion_firma;
+    //     $pintura->estado_conservacion = $request->input("estado_conservacion");
+    //     $pintura->estado_integridad = $request->input("estado_integridad");
+    //     // $pintura->ruta_imagen = $request->validate(["ruta_imagen" => "image|mimes:jpeg,png,jpg,gif,svg|max:2048"]);
+    //     $pintura->tecnica = $request->input("tecnica");
+    //     $pintura->soporte = $request->input("soporte");        
+    //     $pintura->ubicacion_actual = $request->input("ubicacion_actual");
+    //     $pintura->id_autor = $request->input("id_autor");
+    //     // $pintura->ruta_imagen = $request->validated()["ruta_imagen"];
+
+
+    //     if ($imagen = $request->file('ruta_imagen')) {
+    //         $rutaGuardarImagen = 'images/';
+    //         $imagenPintura = date('YmdHis') . "." . $imagen->getClientOriginalExtension();
+    //         $imagen->move($rutaGuardarImagen, $imagenPintura);
+    //         $pintura->ruta_imagen = "$imagenPintura";
+    //     } else {
+    //         unset($pintura->ruta_imagen);
+    //     }
+
+
+    //     $ingreso = Ingreso::where('id_pintura', $pintura->id)->firstOrFail();
+    //     var_dump($ingreso);
+    //     $ingreso->forma_ingreso = $request->input("forma_ingreso");
+    //     $ingreso->valor = $request->input("valor");
+    //     $ingreso->fecha_doc_ingreso = $request->input("fecha_doc_ingreso");
+    //     $ingreso->fecha_registro = $request->input("fecha_registro");
+    //     $ingreso->observaciones = $request->input("observaciones");
+    //     $ingreso->avaluo = $request->input("avaluo");
+
+    //     $pintura->update(); 
+    //     $ingreso->update(); // Guarda los cambios en la tabla hija
+
+
+    //     return redirect()->route('pinturas.index');
+
+    // }
+
     public function update(Request $request, int $id)
     {
-        //
-        // $request->validate(
-        //     [
-        //         'nombre' => 'required'                
-        //     ]
-        //     );
-        $pintura = Pintura::find($id);
+        $pintura = Pintura::findOrFail($id);
+        $pintura->codigo_alternativo = $request->codigo_alternativo;
         $pintura->nombre = $request->nombre;
         $pintura->siglo_año = $request->siglo_año;
+        $pintura->firmado_atribuido_documento = $request->firmado_atribuido_documento;
+        $pintura->ubicacion_firma = $request->ubicacion_firma;
+        $pintura->estado_conservacion = $request->input("estado_conservacion");
+        $pintura->estado_integridad = $request->input("estado_integridad");
+        $pintura->tecnica = $request->input("tecnica");
+        $pintura->soporte = $request->input("soporte");
+        $pintura->ubicacion_actual = $request->input("ubicacion_actual");
+        $pintura->id_autor = $request->input("id_autor");
+
         if ($imagen = $request->file('ruta_imagen')) {
             $rutaGuardarImagen = 'images/';
             $imagenPintura = date('YmdHis') . "." . $imagen->getClientOriginalExtension();
             $imagen->move($rutaGuardarImagen, $imagenPintura);
-            $pintura->ruta_imagen = "$imagenPintura";
+            $pintura->ruta_imagen = $imagenPintura;
         } else {
             unset($pintura->ruta_imagen);
         }
-        $pintura->update();
-        
 
-        return redirect()->route('pinturas.index');
+        DB::beginTransaction();
+        try {
+            $pintura->save(); // Guarda los cambios en el modelo Pintura
+            
+            $ingreso = Ingreso::where('id_pintura', $pintura->id)->firstOrFail();
+            // dd($ingreso);
+            $ingreso->forma_ingreso = $request->input("forma_ingreso");
+            $ingreso->valor = $request->input("valor");
+            $ingreso->fecha_doc_ingreso = $request->input("fecha_doc_ingreso");
+            $ingreso->fecha_registro = $request->input("fecha_registro");
+            $ingreso->observaciones = $request->input("observaciones");
+            $ingreso->avaluo = $request->input("avaluo");
+
+            $ingreso->save();
+
+            DB::commit();
+            return redirect()->route('pinturas.index');
+        } catch (\Exception $e) {
+            DB::rollback();
+            return $e->getMessage();
+        }
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -204,14 +273,18 @@ class PinturaController extends Controller
         $ingreso->save();
     }
 
-
-    public function formaIngreso(int $id)
+    public function updateIngreso(Request $request, $id_pintura)
     {
-        $resultado = DB::table('ingresos')
-            ->select('forma_ingreso')
-            ->where('id_pintura', $id)
-            ->first();
 
-        return $resultado->forma_ingreso;
+        $ingreso = Ingreso::where('id_pintura', $id_pintura)->first();
+        $ingreso->id_pintura = $id_pintura;
+        $ingreso->forma_ingreso = $request->input("forma_ingreso");
+        $ingreso->valor = $request->input("valor");
+        $ingreso->fecha_doc_ingreso = $request->input("fecha_doc_ingreso");
+        $ingreso->fecha_registro = $request->input("fecha_registro");
+        $ingreso->observaciones = $request->input("observaciones");
+        $ingreso->avaluo = $request->input("avaluo");
+
+        $ingreso->save();
     }
 }

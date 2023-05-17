@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 /**
  * @property integer $id_pintura
  * @property string $forma_ingreso
@@ -19,6 +20,8 @@ class Ingreso extends Model
     /**
      * @var array
      */
+    // protected $primaryKey = null;
+    // public $incrementing = false;
     public $timestamps = false;
     protected $fillable = ['id_pintura', 'forma_ingreso', 'valor', 'fecha_doc_ingreso', 'fecha_registro', 'observaciones', 'avaluo'];
 
