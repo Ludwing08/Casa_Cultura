@@ -26,9 +26,13 @@
   <header>
     <nav class="navbar navbar-expand navbar-dark bg-dark">
         <ul class="nav navbar-nav">
+          <form action=" {{ route('logout') }} " method="post">
+            @csrf
             <li class="nav-item">
-                <a class="nav-link active" href="{{'/'}}" aria-current="page">Inicio <span class="visually-hidden">(current)</span></a>
-            </li>
+              <button class="nav-link active"  type="submit" aria-current="page">Log out <span class="visually-hidden">(current)</span></button>
+          </li>
+          </form>
+            
             <li class="nav-item">
                 <a class="nav-link" href="{{url('autores')}}">Autores</a>
             </li>

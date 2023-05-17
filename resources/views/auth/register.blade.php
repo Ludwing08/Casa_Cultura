@@ -29,8 +29,6 @@
                         <form action="{{route('register')}}" method="post">
                           @csrf
                           @method('post')
-                          
-                          @dump($errors)->all()
 
                           <!--Nombre-->
                           <div class="form-outline mb-4">
