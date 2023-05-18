@@ -109,7 +109,7 @@
                                           <h4 class="card-title">Imagen Pintura</h4>
                                           <div class="mb-3">
                                               <label for="" class="form-label">Escoja la imagen</label>
-                                              <input type="file" accept="image/*" class="form-control" required name="ruta_imagen" id="imagen_seleccionada" placeholder="" aria-describedby="fileHelpId">
+                                              <input type="file" accept="image/*" class="form-control" name="ruta_imagen" id="imagen_seleccionada" placeholder="" aria-describedby="fileHelpId">
                                               <div id="fileHelpId" class="form-text">
                                                   <img src="/images/{{$pintura->ruta_imagen}}" id="preview" style="max-height: 300px; max-width: 300px;">
                                               </div>
