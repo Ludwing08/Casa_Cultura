@@ -127,23 +127,23 @@
 
                                                   <div class="col-4"> Obra en cm
                                                       <div class="mb-3">
-                                                          <input type="text" class="form-control" name="alto_obra" id="" aria-describedby="helpId" placeholder="Alto" value="{{ $pintura->dimensiones->first()->alto_obra }}">
+                                                          <input type="number" class="form-control" name="alto_obra" id="" aria-describedby="helpId" placeholder="Alto" value="{{ $pintura->dimensiones->first()->alto_obra }}">
                                                       </div>
 
                                                       <div class="mb-3">
-                                                          <input type="text" class="form-control" name="ancho_obra" id="" aria-describedby="helpId" placeholder="Ancho" value="{{ $pintura->dimensiones->first()->ancho_obra }}">
+                                                          <input type="number" class="form-control" name="ancho_obra" id="" aria-describedby="helpId" placeholder="Ancho" value="{{ $pintura->dimensiones->first()->ancho_obra }}">
                                                       </div>
 
                                                       <div class="mb-3">
-                                                          <input type="text" class="form-control" name="profundidad_obra" id="" aria-describedby="helpId" placeholder="Prof." value="{{ $pintura->dimensiones->first()->profundidad_obra }}">
+                                                          <input type="number" class="form-control" name="profundidad_obra" id="" aria-describedby="helpId" placeholder="Prof." value="{{ $pintura->dimensiones->first()->profundidad_obra }}">
                                                       </div>
 
                                                       <div class="mb-3">
-                                                          <input type="text" class="form-control" name="diametro_mayor_obra" id="" aria-describedby="helpId" placeholder="D.Mayor" value="{{ $pintura->dimensiones->first()->diametro_mayor_obra }}">
+                                                          <input type="number" class="form-control" name="diametro_mayor_obra" id="" aria-describedby="helpId" placeholder="D.Mayor" value="{{ $pintura->dimensiones->first()->diametro_mayor_obra }}">
                                                       </div>
 
                                                       <div class="mb-3">
-                                                          <input type="text" class="form-control" name="diametro_menor_obra" id="" aria-describedby="helpId" placeholder="D.Menor" value="{{ $pintura->dimensiones->first()->diametro_menor_obra }}">
+                                                          <input type="number" class="form-control" name="diametro_menor_obra" id="" aria-describedby="helpId" placeholder="D.Menor" value="{{ $pintura->dimensiones->first()->diametro_menor_obra }}">
                                                       </div>
                                                   </div>
 
@@ -151,11 +151,11 @@
                                                   <div class="col-4"> Plancha Grabado
                                                       <div class="row">
                                                           <div class="mb-3">
-                                                              <input type="text" class="form-control" name="plancha_grabado_alto" id="" aria-describedby="helpId" placeholder="Alto" value="{{ $pintura->dimensiones->first()->plancha_grabado_alto }}">
+                                                              <input type="number" class="form-control" name="plancha_grabado_alto" id="" aria-describedby="helpId" placeholder="Alto" value="{{ $pintura->dimensiones->first()->plancha_grabado_alto }}">
                                                           </div>
 
                                                           <div class="mb-3">
-                                                              <input type="text" class="form-control" name="plancha_grabado_ancho" id="" aria-describedby="helpId" placeholder="Ancho" value="{{ $pintura->dimensiones->first()->plancha_grabado_ancho }}">
+                                                              <input type="number" class="form-control" name="plancha_grabado_ancho" id="" aria-describedby="helpId" placeholder="Ancho" value="{{ $pintura->dimensiones->first()->plancha_grabado_ancho }}">
                                                           </div>
 
                                                           <div class="mb-3">
@@ -168,15 +168,15 @@
                                                   <div class="col-4"> Marco/Elemento
                                                       <div class="row">
                                                           <div class="mb-3">
-                                                              <input type="text" class="form-control" name="marco_alto" id="" aria-describedby="helpId" placeholder="Alto" value="{{ $pintura->dimensiones->first()->marco_alto }}">
+                                                              <input type="number" class="form-control" name="marco_alto" id="" aria-describedby="helpId" placeholder="Alto" value="{{ $pintura->dimensiones->first()->marco_alto }}">
                                                           </div>
 
                                                           <div class="mb-3">
-                                                              <input type="text" class="form-control" name="marco_ancho" id="" aria-describedby="helpId" placeholder="Ancho" value="{{ $pintura->dimensiones->first()->marco_ancho }}">
+                                                              <input type="number" class="form-control" name="marco_ancho" id="" aria-describedby="helpId" placeholder="Ancho" value="{{ $pintura->dimensiones->first()->marco_ancho }}">
                                                           </div>
 
                                                           <div class="mb-3">
-                                                              <input type="text" class="form-control" name="marco_profundidad" id="" aria-describedby="helpId" placeholder="Prof." value="{{ $pintura->dimensiones->first()->marco_profundidad }}">
+                                                              <input type="number" class="form-control" name="marco_profundidad" id="" aria-describedby="helpId" placeholder="Prof." value="{{ $pintura->dimensiones->first()->marco_profundidad }}">
                                                           </div>
 
                                                       </div>

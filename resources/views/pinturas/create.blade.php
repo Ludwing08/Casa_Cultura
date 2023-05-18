@@ -141,27 +141,27 @@
 
                               <div class="col-4"> Obra en cm
                                     <div class="mb-3">
-                                      <input type="text"
+                                      <input type="number"
                                         class="form-control" name="alto_obra" id="" aria-describedby="helpId" placeholder="Alto">
                                     </div>
                                   
                                     <div class="mb-3">
-                                      <input type="text"
+                                      <input type="number"
                                         class="form-control" name="ancho_obra" id="" aria-describedby="helpId" placeholder="Ancho">
                                     </div>
 
                                     <div class="mb-3">
-                                      <input type="text"
+                                      <input type="number"
                                         class="form-control" name="profundidad_obra" id="" aria-describedby="helpId" placeholder="Prof.">
                                     </div>
                                   
                                     <div class="mb-3">
-                                      <input type="text"
+                                      <input type="number"
                                         class="form-control" name="diametro_mayor_obra" id="" aria-describedby="helpId" placeholder="D.Mayor">
                                     </div>
 
                                     <div class="mb-3">
-                                      <input type="text"
+                                      <input type="number"
                                         class="form-control" name="diametro_menor_obra" id="" aria-describedby="helpId" placeholder="D.Menor">
                                     </div>
                               </div>
@@ -170,12 +170,12 @@
                               <div class="col-4"> Plancha Grabado
                                 <div class="row">
                                     <div class="mb-3">
-                                      <input type="text"
+                                      <input type="number"
                                         class="form-control" name="plancha_grabado_alto" id="" aria-describedby="helpId" placeholder="Alto">
                                     </div>
                                   
                                     <div class="mb-3">
-                                      <input type="text"
+                                      <input type="number"
                                         class="form-control" name="plancha_grabado_ancho" id="" aria-describedby="helpId" placeholder="Ancho">
                                     </div>
 
@@ -190,17 +190,17 @@
                               <div class="col-4"> Marco/Elemento
                                 <div class="row">
                                     <div class="mb-3">
-                                      <input type="text"
+                                      <input type="number"
                                         class="form-control" name="marco_alto" id="" aria-describedby="helpId" placeholder="Alto">
                                     </div>
                                   
                                     <div class="mb-3">
-                                      <input type="text"
+                                      <input type="number"
                                         class="form-control" name="marco_ancho" id="" aria-describedby="helpId" placeholder="Ancho">
                                     </div>
 
                                     <div class="mb-3">
-                                      <input type="text"
+                                      <input type="number"
                                         class="form-control" name="marco_profundidad" id="" aria-describedby="helpId" placeholder="Prof.">
                                     </div>
                                     
