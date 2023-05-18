@@ -1,7 +1,6 @@
 @extends('principal')
 @section('content')
 
-<!-- Agregar categoria -->
 <a href="{{ route('pinturas.create') }}" class="btn btn-primary">Nuevo pintura</a>
 
 
